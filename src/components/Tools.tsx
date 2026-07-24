@@ -408,8 +408,8 @@ export function Tools() {
   const ActiveTool = toolComponents[active];
 
   return (
-    <section id="tools" className="py-28 border-t border-[var(--border)]" style={{background: "linear-gradient(180deg, var(--bg-deep) 0%, #0b2d33 50%, var(--bg-deep) 100%)"}}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="tools" className="py-32 mt-20 border-t border-[var(--border)]" style={{background: "linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-card) 50%, var(--bg-deep) 100%)"}}>
+      <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="mb-12 text-center">
           <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
             Interactive Tools

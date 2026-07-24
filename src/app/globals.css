@@ -6,7 +6,6 @@
   --moss-green: #839958;
   --beige: #F7F4D5;
   --rosy-brown: #D3968C;
-  --midnight-green: #105666;
   --bg: #0A3323;
   --bg-deep: #061f14;
   --bg-card: #0d3d2b;
@@ -15,6 +14,7 @@
   --text-muted: #9aad8c;
   --border: #1a4a36;
   --border-hover: #2a6a4a;
+  --deep-green: #135241;
 }
 
 @theme inline {
@@ -22,7 +22,7 @@
   --color-moss: #839958;
   --color-beige: #F7F4D5;
   --color-rosy: #D3968C;
-  --color-midnight: #105666;
+  --color-deep-green: #135241;
   --color-bg: #0A3323;
   --color-bg-deep: #061f14;
   --color-bg-card: #0d3d2b;

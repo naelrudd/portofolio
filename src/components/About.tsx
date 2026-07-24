@@ -1,21 +1,18 @@
 export function About() {
   return (
-    <section id="about" className="py-28 border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-16 max-w-6xl mx-auto">
-          {/* Left: Header */}
-          <div className="lg:col-span-3">
+    <section id="about" className="py-32 border-t border-[var(--border)]">
+      <div className="max-w-7xl mx-auto px-8 lg:px-16">
+        <div className="grid lg:grid-cols-12 gap-16">
+          {/* Left: Header + Bio */}
+          <div className="lg:col-span-7">
             <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--rosy)] tracking-[0.25em] uppercase mb-4">
               About Me
             </p>
-            <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold mb-8">
               Who I <span className="text-[var(--moss)]">Am</span>
             </h2>
-            <div className="w-12 h-[2px] bg-[var(--rosy)]" />
-          </div>
-
-          {/* Center: Bio */}
-          <div className="lg:col-span-5 space-y-6">
+            <div className="w-12 h-[2px] bg-[var(--rosy)] mb-8" />
+            <div className="space-y-6">
             <p className="text-[var(--text-muted)] leading-relaxed text-[15px]">
               I am a fullstack engineer specializing in integrating AI into production-grade products. 
               From real-time backends to intuitive user interfaces — I own the entire stack.
@@ -33,8 +30,10 @@ export function About() {
             </p>
           </div>
 
+          </div>
+
           {/* Right: Cards */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-5 space-y-4">
             {[
               {
                 icon: "◇",

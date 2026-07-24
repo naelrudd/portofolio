@@ -1,8 +1,8 @@
 export function CVDownload() {
   return (
-    <section id="cv" className="py-28 border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+    <section id="cv" className="py-32 mt-20 border-t border-[var(--border)]">
+      <div className="max-w-7xl mx-auto px-8 lg:px-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
             <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
@@ -31,7 +31,7 @@ export function CVDownload() {
 
           {/* Right: Preview card */}
           <div className="relative">
-            <div className="bg-[var(--midnight)]/10 border border-[var(--midnight)]/30 rounded-2xl p-8 relative overflow-hidden">
+            <div className="bg-[var(--deep-green)]/10 border border-[var(--deep-green)]/30 rounded-2xl p-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--rosy)]/5 rounded-full blur-[50px]" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-[var(--moss)]/5 rounded-full blur-[40px]" />
 

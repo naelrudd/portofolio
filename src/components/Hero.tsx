@@ -12,6 +12,7 @@ const navLinks = [
 
 export function Hero() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -29,7 +30,7 @@ export function Hero() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16 h-16 flex items-center justify-between">
           <a href="#" className="font-[family-name:var(--font-heading)] text-xl font-bold text-[var(--moss)]">
             N<span className="text-[var(--rosy)]">.</span>R
           </a>
@@ -44,12 +45,51 @@ export function Hero() {
               </a>
             ))}
           </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+              }`}
+            />
+          </button>
         </div>
       </nav>
 
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[var(--bg-deep)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-2xl font-[family-name:var(--font-heading)] text-[var(--beige)] hover:text-[var(--moss)] transition-colors duration-300"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+
       {/* Hero Content */}
       <div className="flex-1 flex items-center pt-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Text */}
             <div className="space-y-8 text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
@@ -105,7 +145,7 @@ export function Hero() {
               <div className="relative">
                 {/* Ambient glow */}
                 <div className="absolute -inset-8 bg-[var(--moss)] rounded-full blur-[100px] opacity-10" />
-                <div className="absolute -inset-4 bg-[var(--midnight)] rounded-full blur-[60px] opacity-15" />
+                <div className="absolute -inset-4 bg-[var(--deep-green)] rounded-full blur-[60px] opacity-15" />
                 {/* Photo */}
                 <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-[var(--border)] shadow-2xl">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -116,7 +156,7 @@ export function Hero() {
                   />
                 </div>
                 {/* Badge */}
-                <div className="absolute -bottom-1 -right-1 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-4 py-2.5 shadow-xl">
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-4 py-2.5 shadow-xl">
                   <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)]">
                     ▸ AI + Fullstack
                   </p>

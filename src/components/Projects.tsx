@@ -15,7 +15,7 @@ const projects = [
   {
     name: "NgopiKos",
     status: "Development",
-    statusColor: "bg-[var(--midnight)]",
+    statusColor: "bg-[var(--deep-green)]",
     desc: "A platform for MSME boarding house management. Integrated with Midtrans payment gateway, Clerk authentication, and real-time data synchronization through Convex.",
     challenge: "Building a reliable payment flow with real-time synchronization in a production environment",
     tags: ["Convex", "Clerk", "Midtrans", "Payment Gateway"],
@@ -43,8 +43,8 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-28 border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="projects" className="py-32 mt-20 border-t border-[var(--border)]">
+      <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="mb-16">
           <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--rosy)] tracking-[0.25em] uppercase mb-4">
             Featured Work
@@ -54,7 +54,7 @@ export function Projects() {
           </h2>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-5">
           {projects.map((project) => (
             <div
               key={project.name}
@@ -74,7 +74,7 @@ export function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className="md:col-span-3 p-8 lg:p-10 flex flex-col justify-center">
+                <div className="md:col-span-3 p-6 lg:p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
                     <h3 className="text-xl font-bold">{project.name}</h3>
                     <span
@@ -84,11 +84,11 @@ export function Projects() {
                     </span>
                   </div>
 
-                  <p className="text-[var(--text-muted)] text-sm mb-5 leading-relaxed max-w-xl">
+                  <p className="text-[var(--text-muted)] text-sm mb-4 leading-relaxed max-w-xl">
                     {project.desc}
                   </p>
 
-                  <div className="bg-[var(--midnight)]/10 rounded-lg px-5 py-3.5 mb-5 border border-[var(--midnight)]/30">
+                  <div className="bg-[var(--deep-green)]/10 rounded-lg px-4 py-3 mb-4 border border-[var(--deep-green)]/30">
                     <p className="text-xs text-[var(--rosy)] font-[family-name:var(--font-mono)] leading-relaxed">
                       CHALLENGE → {project.challenge}
                     </p>
