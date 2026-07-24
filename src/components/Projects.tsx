@@ -7,26 +7,26 @@ const projects = [
     name: "Moveverse",
     status: "Active",
     statusColor: "bg-[var(--moss)]",
-    desc: "Multi-role dashboard untuk parent-child learning system. Gamifikasi (XP, tier, level) bikin belajar jadi game.",
-    challenge: "XP threshold balancing — tier progression harus feel achievable tapi challenging",
+    desc: "A multi-role dashboard for a parent-child learning system. Gamification mechanics — experience points, tier progression, and leveling — transform education into an engaging experience.",
+    challenge: "XP threshold balancing across five tiers — ensuring progression feels achievable yet challenging",
     tags: ["Convex", "Next.js 15", "Clerk", "Gamification"],
     screenshot: "/screenshots/moveverse.png",
   },
   {
     name: "NgopiKos",
-    status: "Dev",
+    status: "Development",
     statusColor: "bg-[var(--midnight)]",
-    desc: "Platform UMKM kos-kosan. Payment gateway Midtrans, auth Clerk, real-time data Convex.",
-    challenge: "Payment flow + real-time sync yang reliable di production",
-    tags: ["Convex", "Clerk", "Midtrans", "Payment"],
+    desc: "A platform for MSME boarding house management. Integrated with Midtrans payment gateway, Clerk authentication, and real-time data synchronization through Convex.",
+    challenge: "Building a reliable payment flow with real-time synchronization in a production environment",
+    tags: ["Convex", "Clerk", "Midtrans", "Payment Gateway"],
     screenshot: "/screenshots/ngopikos.png",
   },
   {
     name: "Peeler",
     status: "Live",
     statusColor: "bg-[var(--moss)]",
-    desc: "E-commerce UMKM quail (puyuh). Product catalog, order management, conversion-focused UX.",
-    challenge: "Mobile-first product listing yang clean dan fast",
+    desc: "An e-commerce platform for quail egg processing MSMEs. Features product catalog, order management, and conversion-focused UX designed for mobile-first interactions.",
+    challenge: "Creating a clean, fast mobile-first product listing experience that drives conversions",
     tags: ["Astro", "E-commerce", "UMKM"],
     screenshot: "/screenshots/peeler.png",
   },
@@ -34,62 +34,61 @@ const projects = [
     name: "RepurposeKit",
     status: "Active",
     statusColor: "bg-[var(--rosy)]",
-    desc: "Tool buat repurpose konten digital — satu konten jadi banyak produk digital.",
-    challenge: "Content transformation pipeline yang konsisten output-nya",
-    tags: ["Content Pipeline", "Automation", "Digital Products"],
+    desc: "A Chrome extension that transforms a single article into five social media posts within ten seconds. AI-powered content repurposing for LinkedIn, X, Instagram, Facebook, and Threads.",
+    challenge: "Developing a consistent content transformation pipeline with reliable output quality",
+    tags: ["Chrome Extension", "AI", "OpenRouter", "Automation"],
     screenshot: "/screenshots/repurposekit.png",
   },
 ];
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 border-t border-[var(--border)]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="projects" className="py-28 border-t border-[var(--border)]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
-          <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-widest uppercase mb-4">
+          <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
             Featured Work
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold">
-            Yang udah <span className="text-[var(--rosy)]">gw build</span>
+            Selected Projects
           </h2>
         </div>
 
-        <div className="space-y-8">
-          {projects.map((project, i) => (
+        <div className="space-y-6">
+          {projects.map((project) => (
             <div
               key={project.name}
-              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl overflow-hidden hover:border-[var(--moss)] transition-colors"
+              className="group bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl overflow-hidden hover:border-[var(--border-hover)] transition-all duration-300"
             >
               <div className="grid md:grid-cols-5 gap-0">
-                {/* Screenshot placeholder */}
+                {/* Screenshot */}
                 <div className="md:col-span-2 relative aspect-[4/3] md:aspect-auto bg-[var(--bg-deep)] overflow-hidden">
                   <Image
                     src={project.screenshot}
                     alt={project.name}
                     fill
-                    className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
                   />
-                  {/* Fallback gradient if no screenshot */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--midnight)] to-[var(--dark-green)] opacity-50" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)]/30 md:block hidden" />
                 </div>
 
                 {/* Content */}
-                <div className="md:col-span-3 p-8 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-3">
+                <div className="md:col-span-3 p-8 lg:p-10 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-4">
                     <h3 className="text-xl font-bold">{project.name}</h3>
                     <span
-                      className={`px-2 py-0.5 text-[10px] font-[family-name:var(--font-mono)] rounded-full ${project.statusColor} text-[var(--bg)]`}
+                      className={`px-2.5 py-0.5 text-[10px] font-[family-name:var(--font-mono)] rounded-full ${project.statusColor} text-[var(--bg)]`}
                     >
                       {project.status}
                     </span>
                   </div>
 
-                  <p className="text-[var(--text-muted)] text-sm mb-4 leading-relaxed">
+                  <p className="text-[var(--text-muted)] text-sm mb-5 leading-relaxed max-w-xl">
                     {project.desc}
                   </p>
 
-                  <div className="bg-[var(--bg-deep)] rounded-lg px-4 py-3 mb-4">
-                    <p className="text-xs text-[var(--moss)] font-[family-name:var(--font-mono)]">
+                  <div className="bg-[var(--bg-deep)] rounded-lg px-5 py-3.5 mb-5 border border-[var(--border)]">
+                    <p className="text-xs text-[var(--moss)] font-[family-name:var(--font-mono)] leading-relaxed">
                       CHALLENGE → {project.challenge}
                     </p>
                   </div>
@@ -98,7 +97,7 @@ export function Projects() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-[family-name:var(--font-mono)] px-3 py-1 rounded-full border border-[var(--border)] text-[var(--text-muted)]"
+                        className="text-[11px] font-[family-name:var(--font-mono)] px-3 py-1.5 rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--moss)] hover:text-[var(--moss)] transition-colors"
                       >
                         {tag}
                       </span>
