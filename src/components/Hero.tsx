@@ -75,7 +75,7 @@ export function Hero() {
                 </a>
                 <a
                   href="#contact"
-                  className="px-8 py-3.5 border border-[var(--border)] text-[var(--beige)] font-semibold rounded-lg hover:border-[var(--moss)] hover:bg-[var(--moss)]/5 transition-all duration-300"
+                  className="px-8 py-3.5 border border-[var(--rosy)] text-[var(--rosy)] font-semibold rounded-lg hover:bg-[var(--rosy)]/10 hover:border-[var(--rosy)] transition-all duration-300"
                 >
                   Get in Touch
                 </a>

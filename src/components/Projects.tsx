@@ -46,11 +46,11 @@ export function Projects() {
     <section id="projects" className="py-28 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
-          <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
+          <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--rosy)] tracking-[0.25em] uppercase mb-4">
             Featured Work
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold">
-            Selected Projects
+            Selected <span className="text-[var(--moss)]">Projects</span>
           </h2>
         </div>
 
@@ -88,8 +88,8 @@ export function Projects() {
                     {project.desc}
                   </p>
 
-                  <div className="bg-[var(--bg-deep)] rounded-lg px-5 py-3.5 mb-5 border border-[var(--border)]">
-                    <p className="text-xs text-[var(--moss)] font-[family-name:var(--font-mono)] leading-relaxed">
+                  <div className="bg-[var(--midnight)]/10 rounded-lg px-5 py-3.5 mb-5 border border-[var(--midnight)]/30">
+                    <p className="text-xs text-[var(--rosy)] font-[family-name:var(--font-mono)] leading-relaxed">
                       CHALLENGE → {project.challenge}
                     </p>
                   </div>

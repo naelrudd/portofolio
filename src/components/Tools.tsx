@@ -408,7 +408,7 @@ export function Tools() {
   const ActiveTool = toolComponents[active];
 
   return (
-    <section id="tools" className="py-28 border-t border-[var(--border)] bg-[var(--bg-deep)]">
+    <section id="tools" className="py-28 border-t border-[var(--border)]" style={{background: "linear-gradient(180deg, var(--bg-deep) 0%, #0b2d33 50%, var(--bg-deep) 100%)"}}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-12 text-center">
           <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
@@ -429,7 +429,7 @@ export function Tools() {
               onClick={() => setActive(tool.id)}
               className={`text-left p-4 rounded-xl border transition-all duration-300 ${
                 active === tool.id
-                  ? "bg-[var(--bg-card)] border-[var(--moss)] shadow-lg shadow-[var(--moss)]/10"
+                  ? "bg-[var(--bg-card)] border-[var(--rosy)] shadow-lg shadow-[var(--rosy)]/10"
                   : "bg-[var(--bg)] border-[var(--border)] hover:border-[var(--border-hover)]"
               }`}
             >

@@ -1,6 +1,6 @@
 export function Contact() {
   return (
-    <section id="contact" className="py-28 border-t border-[var(--border)] bg-[var(--bg-deep)]">
+    <section id="contact" className="py-28 border-t border-[var(--border)]" style={{background: "linear-gradient(180deg, var(--bg-deep) 0%, #1a2030 50%, var(--bg-deep) 100%)"}}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {/* Left */}
@@ -27,12 +27,12 @@ export function Contact() {
                   href={item.href}
                   target={item.label !== "Email" ? "_blank" : undefined}
                   rel={item.label !== "Email" ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-4 p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl hover:border-[var(--moss)] transition-all duration-300 group"
+                  className="flex items-center gap-4 p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl hover:border-[var(--rosy)] transition-all duration-300 group"
                 >
                   <span className="text-lg w-8 text-center">{item.icon}</span>
                   <div>
                     <p className="text-xs text-[var(--text-muted)]">{item.label}</p>
-                    <p className="text-sm font-medium group-hover:text-[var(--moss)] transition-colors">{item.value}</p>
+                    <p className="text-sm font-medium group-hover:text-[var(--rosy)] transition-colors">{item.value}</p>
                   </div>
                 </a>
               ))}
@@ -72,7 +72,7 @@ export function Contact() {
               />
               <button
                 type="submit"
-                className="w-full py-3.5 bg-[var(--moss)] text-[var(--bg)] font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--moss)]/20 transition-all duration-300"
+                className="w-full py-3.5 bg-[var(--rosy)] text-[var(--bg)] font-semibold rounded-xl hover:shadow-lg hover:shadow-[var(--rosy)]/20 transition-all duration-300"
               >
                 Send Message
               </button>
@@ -85,7 +85,7 @@ export function Contact() {
           <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--text-muted)]">
             © 2026 Natanael Rudy. Crafted with Next.js + Tailwind CSS.
           </p>
-          <p className="font-[family-name:var(--font-mono)] text-[10px] text-[var(--text-muted)] tracking-widest uppercase">
+          <p className="font-[family-name:var(--font-mono)] text-[10px] text-[var(--rosy)] tracking-widest uppercase">
             Designing Systems. Building the Future.
           </p>
         </div>

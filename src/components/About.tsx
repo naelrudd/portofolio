@@ -5,13 +5,13 @@ export function About() {
         <div className="grid lg:grid-cols-12 gap-16 max-w-6xl mx-auto">
           {/* Left: Header */}
           <div className="lg:col-span-3">
-            <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
+            <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--rosy)] tracking-[0.25em] uppercase mb-4">
               About Me
             </p>
             <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold mb-6">
-              Who I Am
+              Who I <span className="text-[var(--moss)]">Am</span>
             </h2>
-            <div className="w-12 h-[2px] bg-[var(--moss)]" />
+            <div className="w-12 h-[2px] bg-[var(--rosy)]" />
           </div>
 
           {/* Center: Bio */}
@@ -57,7 +57,7 @@ export function About() {
                 className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 hover:border-[var(--border-hover)] transition-colors duration-300"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[var(--moss)] text-sm">{item.icon}</span>
+                  <span className="text-[var(--rosy)] text-sm">{item.icon}</span>
                   <h4 className="font-semibold text-sm">{item.title}</h4>
                 </div>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.desc}</p>

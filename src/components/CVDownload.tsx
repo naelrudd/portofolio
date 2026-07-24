@@ -31,14 +31,14 @@ export function CVDownload() {
 
           {/* Right: Preview card */}
           <div className="relative">
-            <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--moss)]/5 rounded-full blur-[50px]" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-[var(--rosy)]/5 rounded-full blur-[40px]" />
+            <div className="bg-[var(--midnight)]/10 border border-[var(--midnight)]/30 rounded-2xl p-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--rosy)]/5 rounded-full blur-[50px]" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-[var(--moss)]/5 rounded-full blur-[40px]" />
 
               <div className="relative space-y-5">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-[var(--moss)]/15 flex items-center justify-center border border-[var(--moss)]/20">
-                    <span className="text-[var(--moss)] font-bold text-lg font-[family-name:var(--font-mono)]">NR</span>
+                  <div className="w-14 h-14 rounded-xl bg-[var(--rosy)]/15 flex items-center justify-center border border-[var(--rosy)]/20">
+                    <span className="text-[var(--rosy)] font-bold text-lg font-[family-name:var(--font-mono)]">NR</span>
                   </div>
                   <div>
                     <p className="font-semibold text-lg">Natanael Rudy Hadinata</p>
