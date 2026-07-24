@@ -67,6 +67,7 @@ export function Projects() {
                     src={project.screenshot}
                     alt={project.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
                     className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)]/30 md:block hidden" />

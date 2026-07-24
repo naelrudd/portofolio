@@ -52,7 +52,7 @@ export function Hero() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Text */}
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
               <div>
                 <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
                   Hello, I&apos;m
@@ -66,7 +66,7 @@ export function Hero() {
               <p className="text-lg text-[var(--text-muted)] font-light max-w-lg leading-relaxed">
                 AI & Fullstack Engineer — building systems that are reliable, scalable, and genuinely useful.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 justify-center lg:justify-start">
                 <a
                   href="#projects"
                   className="px-8 py-3.5 bg-[var(--moss)] text-[var(--bg)] font-semibold rounded-lg hover:bg-[var(--moss-green)] hover:shadow-lg hover:shadow-[var(--moss)]/20 transition-all duration-300"
@@ -82,7 +82,7 @@ export function Hero() {
               </div>
 
               {/* Stats */}
-              <div className="flex gap-10 pt-4">
+              <div className="flex gap-10 pt-4 justify-center lg:justify-start">
                 {[
                   { num: "4+", label: "Projects" },
                   { num: "3+", label: "Years Coding" },

@@ -2,7 +2,7 @@ export function About() {
   return (
     <section id="about" className="py-28 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-16">
+        <div className="grid lg:grid-cols-12 gap-16 max-w-6xl mx-auto">
           {/* Left: Header */}
           <div className="lg:col-span-3">
             <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">

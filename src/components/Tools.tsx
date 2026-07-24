@@ -410,14 +410,14 @@ export function Tools() {
   return (
     <section id="tools" className="py-28 border-t border-[var(--border)] bg-[var(--bg-deep)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
             Interactive Tools
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold mb-3">
             Utility <span className="text-[var(--rosy)]">Toolkit</span>
           </h2>
-          <p className="text-[var(--text-muted)] text-sm max-w-lg">
+          <p className="text-[var(--text-muted)] text-sm max-w-lg mx-auto">
             Free, browser-based tools — no signup required. Built for developers and creators.
           </p>
         </div>
