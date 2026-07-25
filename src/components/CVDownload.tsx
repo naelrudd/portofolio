@@ -13,7 +13,7 @@ export function CVDownload() {
             </h2>
             <p className="text-[var(--text-muted)] mb-8 leading-relaxed max-w-md">
               For a detailed overview of my experience, technical skills, and educational background, 
-              please download my resume. Last updated July 2026.
+              please download my resume. Last updated July 2025.
             </p>
             <a
               href="/cv/Natanael_Rudy_Hadinata_Resume.pdf"

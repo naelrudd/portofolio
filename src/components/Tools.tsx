@@ -1,15 +1,30 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import type { FC } from "react";
 
 type ToolId = "markdown" | "calculator" | "color" | "textcounter" | "password";
 
+/* ── SVG Icons ── */
+const ToolIcon = ({ name, className = "" }: { name: string; className?: string }) => {
+  const icons: Record<string, string> = {
+    markdown: `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+    calculator: `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>`,
+    color: `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>`,
+    textcounter: `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`,
+    password: `<svg xmlns="http://www.w3.org/2000/svg" class="${className}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+  };
+  const svg = icons[name];
+  if (!svg) return null;
+  return <span dangerouslySetInnerHTML={{ __html: svg }} />;
+};
+
 const tools = [
-  { id: "markdown" as ToolId, name: "Markdown Preview", icon: "M↓", desc: "Live preview with formatting" },
-  { id: "calculator" as ToolId, name: "Calculator", icon: "⊞", desc: "GUI calculator with history" },
-  { id: "color" as ToolId, name: "Color Picker", icon: "◉", desc: "HEX, RGB, HSL converter" },
-  { id: "textcounter" as ToolId, name: "Text Counter", icon: "#", desc: "Words, characters, sentences" },
-  { id: "password" as ToolId, name: "Password Generator", icon: "🔐", desc: "Secure random passwords" },
+  { id: "markdown" as ToolId, name: "Markdown Preview", icon: "markdown", desc: "Live preview with formatting" },
+  { id: "calculator" as ToolId, name: "Calculator", icon: "calculator", desc: "GUI calculator with history" },
+  { id: "color" as ToolId, name: "Color Picker", icon: "color", desc: "HEX, RGB, HSL converter" },
+  { id: "textcounter" as ToolId, name: "Text Counter", icon: "textcounter", desc: "Words, characters, sentences" },
+  { id: "password" as ToolId, name: "Password Generator", icon: "password", desc: "Secure random passwords" },
 ];
 
 /* ── Markdown Preview ── */
@@ -26,7 +41,7 @@ function MarkdownTool() {
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[var(--beige)]">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
       .replace(/`(.*?)`/g, '<code class="bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--moss)] font-[family-name:var(--font-mono)] text-sm">$1</code>')
-      .replace(/^- (.*$)/gm, '<li class="ml-4 text-[var(--text-muted)]">• $1</li>')
+      .replace(/^- (.*$)/gm, '<li class="ml-4 text-[var(--text-muted)]">\u2022 $1</li>')
       .replace(/^> (.*$)/gm, '<blockquote class="border-l-2 border-[var(--moss)] pl-4 italic text-[var(--text-muted)]">$1</blockquote>')
       .replace(/\n\n/g, '<br/>');
     return html;
@@ -35,7 +50,7 @@ function MarkdownTool() {
   return (
     <div className="grid md:grid-cols-2 gap-4">
       <div>
-        <label className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-mono)] mb-2 block">MARKDOWN INPUT</label>
+        <label className="text-xs text-[var(--text-muted)] font-medium mb-2 block tracking-wide uppercase">Markdown Input</label>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -43,7 +58,7 @@ function MarkdownTool() {
         />
       </div>
       <div>
-        <label className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-mono)] mb-2 block">PREVIEW</label>
+        <label className="text-xs text-[var(--text-muted)] font-medium mb-2 block tracking-wide uppercase">Preview</label>
         <div className="bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl p-6 min-h-[264px]">
           <div dangerouslySetInnerHTML={{ __html: renderMarkdown(input) }} />
         </div>
@@ -69,9 +84,9 @@ function CalculatorTool() {
   const calculate = useCallback((op: string) => {
     setDisplay((prev) => {
       const val = parseFloat(prev);
-      if (op === "±") return String(-val);
+      if (op === "\u00b1") return String(-val);
       if (op === "%") return String(val / 100);
-      if (op === "√") return String(Math.sqrt(val));
+      if (op === "\u221a") return String(Math.sqrt(val));
       return prev;
     });
   }, []);
@@ -102,14 +117,14 @@ function CalculatorTool() {
   const clear = () => { setDisplay("0"); setNewNumber(true); };
 
   const buttons = [
-    ["C", "±", "%", "÷"],
-    ["7", "8", "9", "×"],
-    ["4", "5", "6", "−"],
+    ["C", "\u00b1", "%", "\u00f7"],
+    ["7", "8", "9", "\u00d7"],
+    ["4", "5", "6", "\u2212"],
     ["1", "2", "3", "+"],
-    ["0", ".", "√", "="],
+    ["0", ".", "\u221a", "="],
   ];
 
-  const btnClass = "h-12 rounded-lg font-[family-name:var(--font-mono)] text-sm font-medium transition-all active:scale-95";
+  const btnClass = "h-12 rounded-lg font-medium text-sm transition-all active:scale-95";
   const numClass = `${btnClass} bg-[var(--bg-card)] text-[var(--beige)] border border-[var(--border)] hover:bg-[var(--bg-card-hover)]`;
   const opClass = `${btnClass} bg-[var(--moss)]/15 text-[var(--moss)] border border-[var(--moss)]/30 hover:bg-[var(--moss)]/25`;
   const funcClass = `${btnClass} bg-[var(--bg-deep)] text-[var(--text-muted)] border border-[var(--border)] hover:text-[var(--beige)]`;
@@ -117,31 +132,29 @@ function CalculatorTool() {
   const handleBtn = (b: string) => {
     if (b === "C") return clear();
     if (b === "=") return equals();
-    if (["±", "%", "√"].includes(b)) return calculate(b);
-    if (["÷", "×", "−", "+"].includes(b)) return operate(b === "÷" ? "/" : b === "×" ? "*" : b === "−" ? "-" : b);
+    if (["\u00b1", "%", "\u221a"].includes(b)) return calculate(b);
+    if (["\u00f7", "\u00d7", "\u2212", "+"].includes(b)) return operate(b === "\u00f7" ? "/" : b === "\u00d7" ? "*" : b === "\u2212" ? "-" : b);
     inputDigit(b);
   };
 
-  const getLabel = (b: string) => b === "÷" ? "/" : b === "×" ? "*" : b === "−" ? "-" : b;
+  const getLabel = (b: string) => b === "\u00f7" ? "/" : b === "\u00d7" ? "*" : b === "\u2212" ? "-" : b;
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
       <div className="max-w-xs">
-        {/* Display */}
         <div className="bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl p-4 mb-3">
           <div className="text-right font-[family-name:var(--font-mono)] text-3xl text-[var(--beige)] truncate min-h-[40px]">
             {display}
           </div>
         </div>
-        {/* Grid */}
         <div className="grid grid-cols-4 gap-2">
           {buttons.flat().map((b, i) => (
             <button
               key={i}
               onClick={() => handleBtn(b)}
               className={`${b === "0" ? "col-span-2" : ""} ${
-                b === "C" || b === "±" || b === "%" || b === "√" ? funcClass :
-                b === "÷" || b === "×" || b === "−" || b === "+" || b === "=" ? opClass : numClass
+                b === "C" || b === "\u00b1" || b === "%" || b === "\u221a" ? funcClass :
+                b === "\u00f7" || b === "\u00d7" || b === "\u2212" || b === "+" || b === "=" ? opClass : numClass
               }`}
               data-value={getLabel(b)}
             >
@@ -150,9 +163,8 @@ function CalculatorTool() {
           ))}
         </div>
       </div>
-      {/* History */}
       <div className="flex flex-col justify-center">
-        <label className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-mono)] mb-3 block">HISTORY</label>
+        <label className="text-xs text-[var(--text-muted)] font-medium mb-3 block tracking-wide uppercase">History</label>
         {history.length === 0 ? (
           <p className="text-sm text-[var(--text-muted)] italic">No calculations yet.</p>
         ) : (
@@ -224,7 +236,7 @@ function ColorTool() {
             onClick={() => copyToClipboard(item.value)}
             className="w-full flex items-center gap-3 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl px-5 py-3.5 hover:border-[var(--moss)] transition-colors text-left group"
           >
-            <span className="text-xs text-[var(--moss)] font-[family-name:var(--font-mono)] w-8">{item.label}</span>
+            <span className="text-xs text-[var(--moss)] font-medium w-8">{item.label}</span>
             <span className="font-[family-name:var(--font-mono)] text-sm text-[var(--beige)] flex-1">{item.value}</span>
             <span className="text-xs text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity">click to copy</span>
           </button>
@@ -285,7 +297,7 @@ function PasswordGeneratorTool() {
   const [symbols, setSymbols] = useState(true);
   const [password, setPassword] = useState("");
   const [copied, setCopied] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const generate = useCallback(() => {
     let chars = "";
@@ -331,7 +343,6 @@ function PasswordGeneratorTool() {
 
   return (
     <div className="space-y-6">
-      {/* Password display */}
       <div className="flex gap-3">
         <div className="flex-1 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl px-5 py-4 font-[family-name:var(--font-mono)] text-lg text-[var(--beige)] truncate">
           {password}
@@ -340,26 +351,24 @@ function PasswordGeneratorTool() {
           onClick={copyToClipboard}
           className="px-5 py-3 bg-[var(--moss)] text-[var(--bg)] rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap"
         >
-          {copied ? "✓ Copied" : "Copy"}
+          {copied ? "Copied" : "Copy"}
         </button>
       </div>
 
-      {/* Strength bar */}
       <div>
         <div className="flex justify-between mb-2">
-          <span className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-mono)]">STRENGTH</span>
-          <span className={`text-xs font-[family-name:var(--font-mono)] ${strength.color}`}>{strength.label}</span>
+          <span className="text-xs text-[var(--text-muted)] font-medium tracking-wide uppercase">Strength</span>
+          <span className={`text-xs font-medium ${strength.color}`}>{strength.label}</span>
         </div>
         <div className="h-1.5 bg-[var(--bg-deep)] rounded-full overflow-hidden">
           <div className={`h-full ${strength.bg} rounded-full transition-all duration-500 ${strength.w}`} />
         </div>
       </div>
 
-      {/* Controls */}
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <div className="flex justify-between mb-3">
-            <label className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-mono)]">LENGTH</label>
+            <label className="text-xs text-[var(--text-muted)] font-medium tracking-wide uppercase">Length</label>
             <span className="text-sm text-[var(--beige)] font-[family-name:var(--font-mono)]">{length}</span>
           </div>
           <input
@@ -411,7 +420,7 @@ export function Tools() {
     <section id="tools" className="py-32 mt-20 border-t border-[var(--border)]" style={{background: "linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-card) 50%, var(--bg-deep) 100%)"}}>
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="mb-12 text-center">
-          <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
+          <p className="font-medium text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
             Interactive Tools
           </p>
           <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold mb-3">
@@ -433,7 +442,9 @@ export function Tools() {
                   : "bg-[var(--bg)] border-[var(--border)] hover:border-[var(--border-hover)]"
               }`}
             >
-              <span className="text-xl block mb-2">{tool.icon}</span>
+              <span className="text-[var(--moss)] block mb-2">
+                <ToolIcon name={tool.icon} />
+              </span>
               <h4 className="font-semibold text-xs mb-0.5">{tool.name}</h4>
               <p className="text-[10px] text-[var(--text-muted)] leading-tight">{tool.desc}</p>
             </button>

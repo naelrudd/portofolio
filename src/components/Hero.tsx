@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const navLinks = [
@@ -20,9 +21,24 @@ export function Hero() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
-    <section className="relative min-h-screen flex flex-col">
-      {/* Navbar */}
+    <section className="relative min-h-[100svh] flex flex-col overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 80% 20%, rgba(131,153,88,0.18), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(211,150,140,0.08), transparent 50%)",
+        }}
+      />
+
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
@@ -30,8 +46,11 @@ export function Hero() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 h-16 flex items-center justify-between">
-          <a href="#" className="font-[family-name:var(--font-heading)] text-xl font-bold text-[var(--moss)]">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 h-16 flex items-center justify-between">
+          <a
+            href="#"
+            className="font-[family-name:var(--font-heading)] text-xl font-bold text-[var(--moss)]"
+          >
             N<span className="text-[var(--rosy)]">.</span>R
           </a>
           <div className="hidden md:flex items-center gap-8">
@@ -39,18 +58,19 @@ export function Hero() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-[family-name:var(--font-mono)] text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors duration-300"
+                className="text-sm text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors duration-300 relative group"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--moss)] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
-          {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             <span
               className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
@@ -71,7 +91,6 @@ export function Hero() {
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-[var(--bg-deep)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
           {navLinks.map((link) => (
@@ -87,52 +106,50 @@ export function Hero() {
         </div>
       )}
 
-      {/* Hero Content */}
-      <div className="flex-1 flex items-center pt-16">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left: Text */}
-            <div className="space-y-8 text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
+      <div className="relative flex-1 flex items-center pt-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 w-full py-12 md:py-0">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="space-y-7 text-center lg:text-left flex flex-col justify-center items-center lg:items-start order-2 lg:order-1">
               <div>
                 <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
                   Hello, I&apos;m
                 </p>
-                <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.0] tracking-tight">
+                <h1 className="font-[family-name:var(--font-heading)] text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
                   Natanael
                   <br />
                   <span className="text-[var(--rosy)]">Rudy</span>
                 </h1>
               </div>
-              <p className="text-lg text-[var(--text-muted)] font-light max-w-lg leading-relaxed">
-                AI & Fullstack Engineer — building systems that are reliable, scalable, and genuinely useful.
+              <p className="text-base md:text-lg text-[var(--text-muted)] font-light max-w-md leading-relaxed">
+                AI & Fullstack Engineer — shipping reliable systems with Convex,
+                Next.js, and production AI.
               </p>
-              <div className="flex gap-4 justify-center lg:justify-start">
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                 <a
                   href="#projects"
-                  className="px-8 py-3.5 bg-[var(--moss)] text-[var(--bg)] font-semibold rounded-lg hover:bg-[var(--moss-green)] hover:shadow-lg hover:shadow-[var(--moss)]/20 transition-all duration-300"
+                  className="px-7 py-3.5 bg-[var(--moss)] text-[var(--bg)] font-semibold rounded-xl hover:brightness-110 hover:shadow-lg hover:shadow-[var(--moss)]/25 transition-all duration-300"
                 >
                   View Work
                 </a>
                 <a
                   href="#contact"
-                  className="px-8 py-3.5 border border-[var(--rosy)] text-[var(--rosy)] font-semibold rounded-lg hover:bg-[var(--rosy)]/10 hover:border-[var(--rosy)] transition-all duration-300"
+                  className="px-7 py-3.5 border border-[var(--rosy)]/70 text-[var(--rosy)] font-semibold rounded-xl hover:bg-[var(--rosy)]/10 hover:border-[var(--rosy)] transition-all duration-300"
                 >
                   Get in Touch
                 </a>
               </div>
 
-              {/* Stats */}
-              <div className="flex gap-10 pt-4 justify-center lg:justify-start">
+              <div className="flex gap-8 sm:gap-10 pt-2 justify-center lg:justify-start">
                 {[
-                  { num: "4+", label: "Projects" },
-                  { num: "3+", label: "Years Coding" },
-                  { num: "Full", label: "Stack" },
+                  { num: "4+", label: "Shipped apps" },
+                  { num: "3+", label: "Years coding" },
+                  { num: "E2E", label: "Ownership" },
                 ].map((stat) => (
-                  <div key={stat.label}>
+                  <div key={stat.label} className="text-left">
                     <div className="text-2xl font-bold text-[var(--beige)] font-[family-name:var(--font-mono)]">
                       {stat.num}
                     </div>
-                    <div className="text-[11px] text-[var(--text-muted)] uppercase tracking-widest mt-1">
+                    <div className="text-[11px] text-[var(--text-muted)] tracking-widest mt-1">
                       {stat.label}
                     </div>
                   </div>
@@ -140,24 +157,22 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Right: Photo */}
-            <div className="relative flex justify-center lg:justify-end">
+            <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="relative">
-                {/* Ambient glow */}
-                <div className="absolute -inset-8 bg-[var(--moss)] rounded-full blur-[100px] opacity-10" />
-                <div className="absolute -inset-4 bg-[var(--deep-green)] rounded-full blur-[60px] opacity-15" />
-                {/* Photo */}
-                <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-[var(--border)] shadow-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/images/profile.png"
+                <div className="absolute -inset-10 bg-[var(--moss)] rounded-full blur-[90px] opacity-[0.12]" />
+                <div className="absolute -inset-4 bg-[var(--deep-green)] rounded-full blur-[50px] opacity-20" />
+                <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full overflow-hidden border border-[var(--border)] shadow-2xl ring-1 ring-[var(--moss)]/20">
+                  <Image
+                    src="/images/profile.webp"
                     alt="Natanael Rudy"
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 288px, 352px"
+                    className="object-cover object-[center_18%]"
                   />
                 </div>
-                {/* Badge */}
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-4 py-2.5 shadow-xl">
-                  <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)]">
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-4 py-2.5 shadow-xl backdrop-blur">
+                  <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] whitespace-nowrap">
                     ▸ AI + Fullstack
                   </p>
                 </div>
@@ -167,12 +182,11 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
         <span className="text-[10px] text-[var(--text-muted)] font-[family-name:var(--font-mono)] tracking-widest uppercase">
           scroll
         </span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-[var(--moss)] to-transparent" />
+        <div className="w-px h-10 bg-gradient-to-b from-[var(--moss)] to-transparent" />
       </div>
     </section>
   );
