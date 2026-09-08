@@ -26,15 +26,15 @@ const projects = [
     live: "https://ngopikos.vercel.app",
   },
   {
-    name: "Peeler",
-    status: "Live",
+    name: "KanvaHub",
+    status: "In development",
     statusTone: "moss",
-    desc: "Company profile and product site for a quail-egg peeler built for UMKM. Mobile-first catalog, clear value prop, conversion-focused layout.",
+    desc: "AI-powered canvas workspace for visual thinking. Real-time collaboration, infinite canvas, and generative AI tools built for creators and teams.",
     challenge:
-      "Fast, clean mobile product story that converts non-technical buyers without sales calls.",
-    tags: ["Astro", "E-commerce", "UMKM"],
-    screenshot: "/screenshots/peeler.webp",
-    href: "https://github.com/naelrudd/peeler",
+      "Keeping canvas state snappy while syncing strokes, media, and AI outputs across users in real time.",
+    tags: ["Next.js", "Convex", "Clerk", "Canvas"],
+    screenshot: "/screenshots/kanvashub.webp",
+    href: "https://github.com/naelrudd/kanvashub",
     live: null,
   },
   {
