@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Tools", href: "#tools" },
+  { label: "Stack", href: "#stack" },
   { label: "CV", href: "#cv" },
   { label: "Contact", href: "#contact" },
 ];
@@ -35,7 +35,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 80% 20%, rgba(131,153,88,0.18), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(211,150,140,0.08), transparent 50%)",
+            "radial-gradient(ellipse 70% 50% at 80% 20%, rgba(34,211,238,0.15), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(251,113,133,0.06), transparent 50%)",
         }}
       />
 
@@ -108,10 +108,10 @@ export function Hero() {
 
       <div className="relative flex-1 flex items-center pt-16">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 w-full py-12 md:py-0">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-7 text-center lg:text-left flex flex-col justify-center items-center lg:items-start order-2 lg:order-1">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="space-y-8 text-center lg:text-left flex flex-col justify-center items-center lg:items-start order-2 lg:order-1">
               <div>
-                <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-4">
+                <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-5">
                   Hello, I&apos;m
                 </p>
                 <h1 className="font-[family-name:var(--font-heading)] text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">

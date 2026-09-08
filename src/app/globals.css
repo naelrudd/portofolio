@@ -1,42 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --dark-green: #0A3323;
-  --moss-green: #839958;
-  --beige: #F7F4D5;
-  --rosy-brown: #D3968C;
-  --bg: #0A3323;
-  --bg-deep: #061f14;
-  --bg-card: #0d3d2b;
-  --bg-card-hover: #124a35;
-  --text: #F7F4D5;
-  --text-muted: #9aad8c;
-  --border: #1a4a36;
-  --border-hover: #2a6a4a;
-  --deep-green: #135241;
-  --moss: #839958;
-  --rosy: #D3968C;
+  --bg: #0b0f19;
+  --bg-deep: #070a12;
+  --bg-card: #111827;
+  --bg-card-hover: #1f2937;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --moss: #22d3ee;
+  --rosy: #fb7185;
+  --border: #1f2937;
+  --border-hover: #334155;
+  --deep-green: #0ea5e9;
+  --dark-green: #0b1221;
+  --beige: #f8fafc;
 }
 
 @theme inline {
-  --color-dark-green: #0A3323;
-  --color-moss: #839958;
-  --color-beige: #F7F4D5;
-  --color-rosy: #D3968C;
-  --color-deep-green: #135241;
-  --color-bg: #0A3323;
-  --color-bg-deep: #061f14;
-  --color-bg-card: #0d3d2b;
-  --color-bg-card-hover: #124a35;
-  --color-text: #F7F4D5;
-  --color-text-muted: #9aad8c;
-  --color-border: #1a4a36;
-  --color-border-hover: #2a6a4a;
+  --color-bg: var(--bg);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-moss: var(--moss);
+  --color-rosy: var(--rosy);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-deep-green: var(--deep-green);
+  --color-dark-green: var(--dark-green);
+  --color-beige: var(--beige);
   --font-heading: var(--font-heading), Georgia, serif;
   --font-body: var(--font-body), system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -52,18 +49,20 @@ body {
 }
 
 ::selection {
-  background: var(--moss-green);
-  color: var(--dark-green);
+  background: var(--moss);
+  color: var(--bg);
 }
 
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-deep);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--moss-green);
+  background: var(--moss);
   border-radius: 4px;
 }
 

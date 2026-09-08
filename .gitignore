@@ -45,3 +45,7 @@ public/cv/*
 
 .vercel
 .hermes
+
+# static export
+dist/
+
