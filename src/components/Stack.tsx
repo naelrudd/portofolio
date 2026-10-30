@@ -32,7 +32,7 @@ export function Stack() {
             Tools I <span className="text-[var(--rosy)]">Use</span>
           </h2>
           <p className="mt-4 text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
-            Stack modern yang gw pakai buat nge-ship produk dari 0 sampai production.
+            The modern stack I use to ship products from zero to production.
           </p>
         </div>
 
