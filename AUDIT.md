@@ -246,6 +246,31 @@ total page weight 449 KB (was 1094 KB).
 
 ---
 
+---
+
+## Domain readiness
+
+The origin used to be hardcoded in five files, so pointing the site at a custom
+domain meant five edits and a missed one. It now lives in `src/lib/site.ts`,
+read from `NEXT_PUBLIC_SITE_URL`, and the canonical tags, Open Graph URLs,
+JSON-LD, `sitemap.xml` and `robots.txt` are all derived from it at build time.
+Switching domains is one environment variable plus a redeploy.
+
+Three tests in `tests/seo.spec.ts` assert that the sitemap, the robots file and
+the canonical tags agree on the same origin, so a half-finished migration fails
+the suite instead of shipping.
+
+Unknown URLs now render a branded 404 (`src/app/not-found.tsx`) with the four
+real pages listed, instead of the host's default page. `tests/not-found.spec.ts`
+covers it; the local test server serves `404.html` so the tested behaviour
+matches the host.
+
+Remaining work is yours: buy the domain, add it in Vercel, point DNS at
+`76.76.21.21` / `cname.vercel-dns.com`, then set `NEXT_PUBLIC_SITE_URL` and
+redeploy.
+
+---
+
 ## Audit artefacts
 
 `.audit/lh-mobile.json`, `.audit/lh-desktop.json`, `.audit/axe.json`, `.audit/probe.cjs`, `.audit/formsubmit-response.html`.
