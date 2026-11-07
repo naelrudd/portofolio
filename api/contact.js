@@ -31,8 +31,10 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
   }
 
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
+  const user = (process.env.GMAIL_USER || "").trim();
+  // Google shows app passwords grouped with spaces ("sprv xxxx xxxx xxxx"); SMTP
+  // rejects them unless the spaces are removed, so strip all whitespace.
+  const pass = (process.env.GMAIL_APP_PASSWORD || "").replace(/\s+/g, "");
   if (!user || !pass) {
     return res.status(503).json({
       ok: false,

@@ -19,7 +19,7 @@ Portofolio pribadi Natanael Rudy Hadinata. Bahasa publik: **formal English**.
 
 ## Aturan file
 - `CV` files gitignored — JANGAN commit
-- Contact form via FormSubmit — jangan ganti provider tanpa instruksi
+- Contact form: POST `/api/contact` (Vercel function, Gmail SMTP via env `GMAIL_USER` + `GMAIL_APP_PASSWORD`). Fallback Gmail compose + mailto kalau gagal. FormSubmit sudah mati (522), jangan dipakai lagi
 
 ## Verifikasi
 - `npm run build` harus pass sebelum lapor selesai
