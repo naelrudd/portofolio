@@ -9,7 +9,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 Portofolio pribadi Natanael Rudy Hadinata. Bahasa publik: **formal English**.
 
 ## Stack
-- Next.js 15 + Tailwind CSS, deploy Vercel (portofolio2-steel.vercel.app)
+- Next.js 15 + Tailwind CSS, deploy Vercel (portofolio-naelrudd.vercel.app)
 - GitHub: naelrudd/portofolio
 
 ## Aturan desain (WAJIB)

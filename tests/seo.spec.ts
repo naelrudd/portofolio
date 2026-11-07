@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const ORIGIN = "https://portofolio2-steel.vercel.app";
+const ORIGIN = "https://portofolio-naelrudd.vercel.app";
 
 test("the sitemap lists every page under the canonical origin", async ({ request }) => {
   const response = await request.get("/sitemap.xml");
