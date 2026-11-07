@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "test:handler": "node tests/handler.cjs"
   },
   "dependencies": {
     "next": "16.2.11",
+    "nodemailer": "^10.3.1",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },

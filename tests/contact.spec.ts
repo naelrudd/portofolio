@@ -4,12 +4,6 @@ const NAME = "Ada Lovelace";
 const EMAIL = "ada@example.com";
 const MESSAGE = "We are hiring a fullstack engineer for a Convex project. Are you free to talk?";
 
-/** The build decides delivery: an access key posts to Web3Forms, otherwise the visitor's mail client. */
-async function delivery(page: import("@playwright/test").Page) {
-  await page.goto("/");
-  return page.locator("form[data-delivery]").getAttribute("data-delivery");
-}
-
 async function fillAndSend(page: import("@playwright/test").Page, overrides = {}) {
   await page.getByLabel("Name").fill(NAME);
   await page.getByLabel("Email").fill(EMAIL);
@@ -22,9 +16,7 @@ async function fillAndSend(page: import("@playwright/test").Page, overrides = {}
   await page.getByRole("button", { name: /send message/i }).click();
 }
 
-test("the contact section is reachable from the page and the email link is a real mailto", async ({
-  page,
-}) => {
+test("the contact section is reachable and the email link is a real mailto", async ({ page }) => {
   await page.goto("/");
   const contact = page.locator("#contact");
   await expect(contact).toBeVisible();
@@ -43,45 +35,34 @@ test("empty submit is blocked by native validation", async ({ page }) => {
   await expect(page.locator("#contact").getByRole("status")).toHaveCount(0);
 });
 
-test("a filled form is delivered and confirmed", async ({ page }) => {
-  const mode = await delivery(page);
-
-  if (mode === "api") {
-    let payload: Record<string, unknown> | null = null;
-    await page.route("https://api.web3forms.com/submit", async (route) => {
-      payload = route.request().postDataJSON();
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ success: true, message: "Email sent successfully!" }),
-      });
+test("a filled form is posted to the mail endpoint and confirmed", async ({ page }) => {
+  await page.goto("/");
+  let payload: Record<string, unknown> | null = null;
+  await page.route("**/api/contact", async (route) => {
+    payload = route.request().postDataJSON();
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
     });
+  });
 
-    await fillAndSend(page);
+  await fillAndSend(page);
 
-    await expect(page.locator("#contact").getByRole("status")).toContainText("Message on its way");
-    expect(payload).not.toBeNull();
-    expect(payload!.name).toBe(NAME);
-    expect(payload!.email).toBe(EMAIL);
-    expect(payload!.message).toBe(MESSAGE);
-    expect(payload!.access_key).toBeTruthy();
-  } else {
-    await fillAndSend(page);
-    await expect(page.locator("#contact").getByRole("status")).toContainText("Message on its way");
-    const href = await page.getByRole("link", { name: /open it again/i }).getAttribute("href");
-    expect(href).toContain("mailto:natanaelrudyhadinata@gmail.com");
-    expect(href).toContain(encodeURIComponent(MESSAGE));
-    expect(href).toContain(encodeURIComponent(EMAIL));
-  }
+  await expect(page.locator("#contact").getByRole("status")).toContainText("Message on its way");
+  expect(payload).not.toBeNull();
+  expect(payload!.name).toBe(NAME);
+  expect(payload!.email).toBe(EMAIL);
+  expect(payload!.message).toBe(MESSAGE);
 });
 
-test("a provider failure falls back to email instead of losing the message", async ({ page }) => {
-  test.skip((await delivery(page)) !== "api", "Only runs when an access key is configured");
-  await page.route("https://api.web3forms.com/submit", (route) =>
+test("a failed delivery keeps the message and offers Gmail plus mailto", async ({ page }) => {
+  await page.goto("/");
+  await page.route("**/api/contact", (route) =>
     route.fulfill({
-      status: 502,
+      status: 503,
       contentType: "application/json",
-      body: JSON.stringify({ success: false, message: "Provider unavailable" }),
+      body: JSON.stringify({ ok: false, error: "Mail is not configured on the server." }),
     })
   );
 
@@ -89,24 +70,32 @@ test("a provider failure falls back to email instead of losing the message", asy
 
   const alert = page.locator("#contact").getByRole("alert");
   await expect(alert).toBeVisible();
-  await expect(alert).toContainText("Provider unavailable");
-  const fallback = page.getByRole("link", { name: /send by email instead/i });
-  await expect(fallback).toHaveAttribute("href", /^mailto:/);
-  expect(await fallback.getAttribute("href")).toContain(encodeURIComponent(MESSAGE));
+  await expect(alert).toContainText("Mail is not configured");
+
+  const gmail = alert.getByRole("link", { name: /open in gmail/i });
+  await expect(gmail).toBeVisible();
+  const gmailHref = decodeURIComponent(((await gmail.getAttribute("href")) ?? "").replace(/\+/g, " "));
+  expect(gmailHref).toContain("mail.google.com");
+  expect(gmailHref).toContain(MESSAGE);
+
+  const mailto = alert.getByRole("link", { name: /mail app/i });
+  expect(await mailto.getAttribute("href")).toContain("mailto:natanaelrudyhadinata@gmail.com");
 });
 
-test("the honeypot silently drops bot submissions without calling the provider", async ({
-  page,
-}) => {
-  const mode = await delivery(page);
+test("the honeypot silently drops bots without calling the endpoint", async ({ page }) => {
+  await page.goto("/");
   let called = false;
-  await page.route("https://api.web3forms.com/submit", async (route) => {
+  await page.route("**/api/contact", async (route) => {
     called = true;
-    await route.fulfill({ status: 200, body: JSON.stringify({ success: true }) });
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    });
   });
 
   await fillAndSend(page, { company: "definitely a bot" });
 
   await expect(page.locator("#contact").getByRole("status")).toContainText("Message on its way");
-  expect(called, `delivery mode was ${mode}`).toBe(false);
+  expect(called).toBe(false);
 });
