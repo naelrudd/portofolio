@@ -12,6 +12,10 @@ export function CVDownload() {
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
+            <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--rosy)]">
+              05 <span aria-hidden="true">/</span> CV
+            </p>
+
             <h2 className="font-[family-name:var(--font-heading)] text-4xl font-medium text-[var(--text)] md:text-5xl">
               Curriculum vitae
             </h2>

@@ -23,6 +23,10 @@ export function Stack() {
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
+            <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--rosy)]">
+              04 <span aria-hidden="true">/</span> Stack
+            </p>
+
             <h2 className="font-[family-name:var(--font-heading)] text-4xl font-medium text-[var(--text)] md:text-5xl">
               What I build with
             </h2>

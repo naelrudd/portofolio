@@ -35,7 +35,7 @@
   --color-beige: var(--beige);
   --font-heading: var(--font-heading), Georgia, serif;
   --font-body: var(--font-body), system-ui, sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 html {
@@ -104,4 +104,15 @@ img {
 :focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 3px;
+}
+
+/* Slow marquee for the stack ticker. Disabled entirely under reduced motion,
+   where the strip just shows the first few items and stays still. */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

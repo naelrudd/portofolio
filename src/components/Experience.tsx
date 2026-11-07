@@ -39,6 +39,10 @@ export function Experience() {
     <section id="experience" className="border-t border-[var(--border)] py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-16">
+          <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--rosy)]">
+            02 <span aria-hidden="true">/</span> Experience
+          </p>
+
           <h2 className="font-[family-name:var(--font-heading)] text-4xl font-medium text-[var(--text)] lg:col-span-5 md:text-5xl">
             Experience
           </h2>
