@@ -224,12 +224,25 @@ total page weight 449 KB (was 1094 KB).
   never in the repo. Rotating the app password means updating the variable and
   redeploying.
 
+### Content pass
+
+- **Education** now reads: S1 Teknik Informatika, Universitas Negeri Malang,
+  S.Kom expected 2027, semester 7 of 8. The previous "4 production applications"
+  line is gone, since the project labels said three shipped plus one
+  open-source.
+- **Experience section added**, built only from sources that can be checked:
+  the Work Scheduler delivery to Kiev Fragrance (DTEI UM news article, 25 June
+  2025, plus registered copyright EC002024223931) and the open-source
+  documentation corpora on GitHub. Both link to their evidence.
+- A band credit (guitarist, Lucien Sunmoon) exists on the public profiles but
+  is left off the page, since it does not help a hiring decision.
+
 ### Still open, needs you
 
-- P1-2 and P1-3: Education block lacks degree, major and years; there is no
-  Experience section. I will not invent either.
 - P1-4: no outcome numbers on the projects. Anything specific you can share
-  (users, orders, latency, uptime) makes the cards far stronger.
+  (users, orders, latency, uptime) makes the cards far stronger. Everything on
+  the page right now is either a live product or a link that can be opened and
+  checked.
 
 ---
 

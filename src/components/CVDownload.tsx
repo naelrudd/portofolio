@@ -1,7 +1,8 @@
 const facts = [
-  { label: "Education", value: "Universitas Negeri Malang" },
+  { label: "Education", value: "S1 Teknik Informatika, Universitas Negeri Malang" },
+  { label: "Degree", value: "S.Kom, expected 2027" },
+  { label: "Stage", value: "Semester 7 of 8" },
   { label: "Focus", value: "Convex + Next.js, AI features" },
-  { label: "Shipped", value: "4 production applications" },
   { label: "Location", value: "Malang, Indonesia" },
 ];
 
