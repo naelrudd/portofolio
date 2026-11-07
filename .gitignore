@@ -52,3 +52,9 @@ dist/
 
 # hallmark lint artefacts
 .hallmark/
+.audit/
+
+# playwright
+test-results/
+playwright-report/
+blob-report/

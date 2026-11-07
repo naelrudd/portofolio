@@ -19,7 +19,7 @@ const projects = [
     challenge:
       "Pairing a paid feature with real-time state while inventory and chat move at the same time.",
     tags: ["Convex", "Clerk", "Midtrans", "Marketplace"],
-    screenshot: "/screenshots/ngopikos.png",
+    screenshot: "/screenshots/ngopikos.webp",
     href: null,
     live: "https://ngopikos.my.id",
   },
