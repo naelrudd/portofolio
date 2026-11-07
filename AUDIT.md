@@ -158,6 +158,79 @@ Target: mobile Performance ≥ 90, A11y ≥ 95, BP ≥ 95, SEO 100. Report befor
 
 **One open decision before I start Phase 1:** FormSubmit (currently down, free, no SLA) or Web3Forms (free tier, needs an access key I cannot create)? I recommend Web3Forms with the mailto fallback as the guaranteed path either way.
 
+
+---
+
+## Phase 1 result
+
+Branch `fix/p0-conversion`, merged to `master` and live at
+https://portofolio2-steel.vercel.app/.
+
+### Lighthouse, measured on the live deployment
+
+| Category | Mobile before | Mobile after | Desktop after |
+|---|---|---|---|
+| Performance | 89 | 95 | 100 |
+| Accessibility | 100 | 100 | 100 |
+| Best practices | 100 | 100 | 100 |
+| SEO | 100 | 100 | 100 |
+
+Mobile is measured under Lighthouse's simulated slow-4G throttling, so runs
+vary by a few points; three consecutive runs gave 95, 96 and one discarded run
+where Chrome failed to start. Target was 90.
+
+Key numbers: LCP 2.4 s (was 2.6 s with 829 KB of PNGs), TBT 171 ms, CLS 0,
+total page weight 449 KB (was 1094 KB).
+
+### What changed
+
+- **Contact form.** FormSubmit returned 522 on every request, so the form could
+  not deliver anything. It now posts to `/api/contact`, a Vercel function that
+  relays through Gmail SMTP. When delivery fails the visitor keeps their text
+  and gets two prefilled routes: Gmail compose in a new tab, and a `mailto`
+  link. Honeypot plus a time trap absorb bots without a captcha.
+- **Sharing surface.** Rendered `public/og.png` at 1200x630 from a local HTML
+  template, plus full OG and Twitter metadata, `metadataBase`, canonical URL,
+  `robots.txt`, `sitemap.xml` and Person JSON-LD.
+- **Images.** Every screenshot re-encoded to 1200x750 WebP at quality 82;
+  `Projects.tsx` now points at `ngopikos.webp` instead of the 610 KB PNG.
+  Image weight 829 KB to 181 KB.
+- **LCP.** The hero screenshot carries `fetchPriority="high"` and an explicit
+  preload, because `next/image` drops the priority hint in a static export.
+- **Copy.** "AI and Fullstack Engineer" became "Fullstack Engineer"; the
+  description now names the products instead of listing adjectives.
+
+### Verification
+
+- `npm run build` passes.
+- `npx playwright test` — 5 specs pass: reachable contact section, native
+  validation, successful post to `/api/contact`, provider failure offering
+  Gmail plus `mailto`, honeypot dropping bots silently.
+- `npm run test:handler` — 4 assertions on the function contract (405 for GET,
+  503 without config, 400 for bad name/email).
+- Live browser submission through the real form returns the success state, and
+  the message arrives in the inbox with a correct `Reply-To`.
+- `og.png` serves 200, `image/png`, 1200x630, 100 KB.
+
+### Known limits
+
+- `npm run lint` still reports 1920 problems, all in `src/components/Tools.tsx`,
+  a file nothing imports. Left untouched; deleting it needs your word.
+- Gmail SMTP caps around 500 recipients a day on a free account. Fine for a
+  portfolio, not for bulk.
+- Rate limiting is in-memory per warm function instance, so it slows abuse but
+  does not stop it. Vercel's own limits are the real ceiling.
+- `GMAIL_USER` and `GMAIL_APP_PASSWORD` live in the Vercel project environment,
+  never in the repo. Rotating the app password means updating the variable and
+  redeploying.
+
+### Still open, needs you
+
+- P1-2 and P1-3: Education block lacks degree, major and years; there is no
+  Experience section. I will not invent either.
+- P1-4: no outcome numbers on the projects. Anything specific you can share
+  (users, orders, latency, uptime) makes the cards far stronger.
+
 ---
 
 ## Audit artefacts
