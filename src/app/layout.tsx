@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-body",
@@ -14,7 +15,6 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const SITE_URL = "https://portofolio2-steel.vercel.app";
 const TITLE = "Natanael Rudy, Fullstack Engineer";
 const DESCRIPTION =
   "Fullstack engineer in Malang, Indonesia. Two live marketplaces on Convex and Midtrans, an AI-driven product platform, and an open-source docs corpus for LLM agents.";

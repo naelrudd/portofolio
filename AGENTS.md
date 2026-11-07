@@ -23,3 +23,9 @@ Portofolio pribadi Natanael Rudy Hadinata. Bahasa publik: **formal English**.
 
 ## Verifikasi
 - `npm run build` harus pass sebelum lapor selesai
+
+## Domain and canonical origin
+`src/lib/site.ts` is the only place the origin is written. Set `NEXT_PUBLIC_SITE_URL`
+(Vercel env + `.env.local`) to switch domains — canonical tags, OG URLs, JSON-LD,
+`sitemap.xml` and `robots.txt` are generated from it at build time (`src/app/sitemap.ts`,
+`src/app/robots.ts`). Never hardcode the origin in components again.
