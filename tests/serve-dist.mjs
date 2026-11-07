@@ -36,7 +36,14 @@ createServer(async (req, res) => {
     const url = decodeURIComponent((req.url || "/").split("?")[0]);
     const base = join(root, normalize(url).replace(/^(\.\.[/\\])+/, ""));
     const file = await resolve(base);
-    if (!file) throw new Error("not found");
+    if (!file) {
+      // Mirror what the host does: serve the exported 404 page, not a bare string.
+      const body = await readFile(join(root, "404.html")).catch(() => null);
+      if (!body) throw new Error("not found");
+      res.writeHead(404, { "Content-Type": types[".html"] });
+      res.end(body);
+      return;
+    }
     const body = await readFile(file);
     res.writeHead(200, { "Content-Type": types[extname(file)] || "application/octet-stream" });
     res.end(body);

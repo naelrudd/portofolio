@@ -125,17 +125,47 @@ export function Hero() {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[var(--bg)] md:hidden">
-          {navLinks.map((link) => (
+        <div className="fixed inset-0 z-40 flex flex-col bg-[var(--bg)] px-6 pt-24 pb-10 md:hidden">
+          <nav aria-label="Sections">
+            <ul className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-baseline gap-4 py-4"
+                  >
+                    <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.16em] text-[var(--rosy)]">
+                      {link.index}
+                    </span>
+                    <span className="font-[family-name:var(--font-heading)] text-[28px] font-medium leading-none text-[var(--text)]">
+                      {link.label}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="mt-auto space-y-3 pt-10">
+            <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+              <LocalTime />
+            </p>
             <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-[family-name:var(--font-heading)] text-2xl text-[var(--text)]"
+              href="mailto:natanaelrudyhadinata@gmail.com?subject=Portfolio%20enquiry"
+              className="block break-all text-sm text-[var(--moss)]"
             >
-              {link.label}
+              natanaelrudyhadinata@gmail.com
             </a>
-          ))}
+            <a
+              href="https://github.com/naelrudd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-sm text-[var(--moss)]"
+            >
+              github.com/naelrudd
+            </a>
+          </div>
         </div>
       )}
 
