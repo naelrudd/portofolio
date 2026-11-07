@@ -137,6 +137,8 @@ export function Hero() {
                   alt="KanvaHub marketplace, a live product built with Convex and Midtrans"
                   fill
                   priority
+                  fetchPriority="high"
+                  loading="eager"
                   sizes="(max-width: 1024px) 100vw, 38vw"
                   className="object-cover object-top"
                 />

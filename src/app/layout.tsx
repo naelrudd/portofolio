@@ -103,6 +103,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          href="/screenshots/kanvashub.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-screen">
         <script
           type="application/ld+json"
