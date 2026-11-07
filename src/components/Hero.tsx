@@ -87,7 +87,7 @@ export function Hero() {
                 href={link.href}
                 className="group flex items-baseline gap-1.5 text-[13px] text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--text)] motion-reduce:transition-none"
               >
-                <span className="font-[family-name:var(--font-mono)] text-[9px] text-[var(--border-strong)] transition-colors duration-200 group-hover:text-[var(--rosy)] motion-reduce:transition-none">
+                <span className="font-[family-name:var(--font-mono)] text-[9px] text-[var(--text-muted)] transition-colors duration-200 group-hover:text-[var(--rosy)] motion-reduce:transition-none">
                   {link.index}
                 </span>
                 {link.label}
