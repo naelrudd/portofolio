@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { caseStudies, getCaseStudy } from "@/content/case-studies";
@@ -122,6 +123,21 @@ export default async function CaseStudyPage({
               </div>
             ))}
           </dl>
+        </div>
+
+        <div className="mx-auto mt-14 max-w-7xl px-6 md:px-8 lg:px-16">
+          <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-card)] p-3 md:p-4">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-[var(--border)] bg-[var(--bg-deep)] shadow-[inset_0_0_0_1px_rgba(10,51,35,0.07)] md:aspect-[16/9]">
+              <Image
+                src={study.cover}
+                alt={`${study.name} interface`}
+                fill
+                sizes="(max-width: 768px) 100vw, 90vw"
+                className="object-cover object-left-top"
+                priority
+              />
+            </div>
+          </figure>
         </div>
 
         <div className="mx-auto mt-16 max-w-7xl border-t border-[var(--border)] px-6 md:px-8 lg:px-16">

@@ -205,7 +205,7 @@ export function Hero() {
                 <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-[var(--border)]">
                   <Image
                     src="/screenshots/kanvashub.webp"
-                    alt="KanvaHub marketplace, a live product built with Convex and Midtrans"
+                    alt="KanvasHub marketplace, a live product built with Convex and Midtrans"
                     fill
                     priority
                     fetchPriority="high"
@@ -216,7 +216,7 @@ export function Hero() {
                 </div>
                 <figcaption className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.1em] md:text-[11px]">
                   <span className="text-[var(--text)]">
-                    Featured <span aria-hidden="true">/</span> KanvaHub
+                    Featured <span aria-hidden="true">/</span> KanvasHub
                   </span>
                   <span className="text-[var(--text-muted)] transition-colors duration-200 group-hover:text-[var(--rosy)] motion-reduce:transition-none">
                     Case study &#8594;

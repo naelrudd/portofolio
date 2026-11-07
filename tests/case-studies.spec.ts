@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const pages = [
-  { slug: "kanvashub", name: "KanvaHub", live: "https://kanvashub.id" },
+  { slug: "kanvashub", name: "KanvasHub", live: "https://kanvashub.id" },
   { slug: "ngopikos", name: "NgopiKos", live: "https://ngopikos.my.id" },
 ];
 

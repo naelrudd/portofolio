@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const projects = [
   {
-    name: "KanvaHub",
+    name: "KanvasHub",
     status: "Live",
     desc: "Marketplace for digital templates and services. Convex backend, Midtrans payments, Clerk auth, seller and buyer flows.",
     challenge:
@@ -41,7 +41,7 @@ const projects = [
   {
     name: "llm-docs-mirrors",
     status: "Open source",
-    desc: "Machine-readable mirrors of 4,100+ pages of official dev and fintech docs, for LLM agents.",
+    desc: "Machine-readable mirrors of 6,370 pages of official payment and developer docs, for LLM agents.",
     challenge:
       "Turning heterogeneous doc sites into clean, git-pinnable Markdown that stays in sync with upstream changes.",
     tags: ["Python", "RAG", "LLM", "Markdown"],
@@ -51,6 +51,12 @@ const projects = [
     caseStudy: null,
   },
 ];
+
+const statusDot: Record<string, string> = {
+  Live: "bg-[var(--moss)]",
+  Shipped: "bg-[var(--deep-green)]",
+  "Open source": "bg-[var(--rosy)]",
+};
 
 export function Projects() {
   return (
@@ -73,58 +79,77 @@ export function Projects() {
           {projects.map((project, i) => (
             <article
               key={project.name}
-              className="grid grid-cols-1 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-card)] md:min-h-[440px] transition-colors duration-200 motion-reduce:transition-none hover:border-[var(--border-hover)] md:grid-cols-12"
+              className="group grid grid-cols-1 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-card)] transition-colors duration-200 motion-reduce:transition-none hover:border-[var(--border-hover)] md:min-h-[440px] md:grid-cols-12"
             >
-              <a
-                href={project.live ?? project.href ?? "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-[16/10] overflow-hidden border-b border-[var(--border)] md:col-span-5 md:aspect-auto md:border-b-0 md:border-r"
-              >
-                <Image
-                  src={project.screenshot}
-                  alt={`${project.name} product preview`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 42vw"
-                  className="object-cover object-left-top"
-                  priority={i === 0}
-                />
-              </a>
+              <div className="p-3 md:col-span-5 md:border-r md:border-[var(--border)] md:p-4">
+                <a
+                  href={project.live ?? project.href ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="relative block aspect-[16/10] overflow-hidden rounded-md border border-[var(--border)] bg-[var(--bg-deep)] shadow-[inset_0_0_0_1px_rgba(10,51,35,0.07)]"
+                >
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.name} product preview`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover object-left-top transition-transform duration-500 ease-out motion-reduce:transition-none group-hover:scale-[1.02]"
+                    priority={i === 0}
+                  />
+                </a>
+              </div>
 
               <div className="flex flex-col justify-center p-6 md:col-span-7 md:p-8">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-[family-name:var(--font-heading)] text-xl font-medium text-[var(--text)] md:text-2xl">
-                    {project.name}
-                  </h3>
-                  <span className="text-xs text-[var(--text-muted)]">
+                <div className="flex items-center justify-between gap-4">
+                  <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                    {String(i + 1).padStart(2, "0")} <span aria-hidden="true">/</span>{" "}
+                    {String(projects.length).padStart(2, "0")}
+                  </p>
+                  <p className="flex items-center gap-2 font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                    <span
+                      aria-hidden="true"
+                      className={`inline-block h-1.5 w-1.5 rounded-full ${statusDot[project.status]}`}
+                    />
                     {project.status}
-                  </span>
+                  </p>
                 </div>
+
+                <h3 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-medium text-[var(--text)] md:text-[28px]">
+                  {project.name}
+                </h3>
 
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-[var(--text-muted)] md:text-[15px]">
                   {project.desc}
                 </p>
 
-                <div className="mt-5 border-l-2 border-[var(--border-hover)] pl-4">
-                  <p className="text-[11px] text-[var(--rosy)]">
+                <p className="mt-3 font-[family-name:var(--font-mono)] text-[11px] text-[var(--text-muted)]">
+                  {project.tags.join(" · ")}
+                </p>
+
+                <div className="mt-6 border-t border-[var(--border)] pt-4">
+                  <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-[var(--rosy)]">
                     Constraint
                   </p>
-                  <p className="mt-1 max-w-xl text-[13px] leading-relaxed text-[var(--text-muted)]">
+                  <p className="mt-1.5 max-w-xl text-[13px] leading-relaxed text-[var(--text-muted)]">
                     {project.challenge}
                   </p>
                 </div>
 
-                <p className="mt-5 text-xs text-[var(--text-muted)]">
-                  {project.tags.join(", ")}
-                </p>
-
-                <div className="mt-6 flex flex-wrap items-center gap-6">
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
                   {project.caseStudy && (
                     <Link
                       href={project.caseStudy}
-                      className="text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
+                      className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
                     >
                       Read the case study
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform duration-200 motion-reduce:transition-none group-hover/link:translate-x-1"
+                      >
+                        &#8594;
+                      </span>
                     </Link>
                   )}
                   {project.live && (
@@ -132,9 +157,10 @@ export function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
                     >
                       Visit site
+                      <span aria-hidden="true">&#8599;</span>
                     </a>
                   )}
                   {project.href && (
@@ -142,9 +168,10 @@ export function Projects() {
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
                     >
                       Source code
+                      <span aria-hidden="true">&#8599;</span>
                     </a>
                   )}
                 </div>

@@ -13,6 +13,7 @@ export type CaseStudy = {
   status: string;
   live: string | null;
   stack: string[];
+  cover: string;
   lede: string;
   facts: { label: string; value: string }[];
   sections: CaseStudySection[];
@@ -22,14 +23,15 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "kanvashub",
-    name: "KanvaHub",
+    name: "KanvasHub",
     tagline: "A marketplace where the inventory is somebody else's Canva link",
     role: "Solo engineer, backend and frontend",
     period: "2026",
     status: "Live at kanvashub.id",
     live: "https://kanvashub.id",
     stack: ["Next.js", "Convex", "Clerk", "Midtrans", "TypeScript"],
-    lede: "Indonesian designers sell Canva templates through Instagram DMs and bank transfers. The seller sends a preview, the buyer transfers, the seller pastes an editable link. Both sides can disappear halfway through, and nobody can prove what was delivered. KanvaHub is that transaction with a ledger, a payment gateway and a licence behind it.",
+    cover: "/screenshots/kanvashub.webp",
+    lede: "Indonesian designers sell Canva templates through Instagram DMs and bank transfers. The seller sends a preview, the buyer transfers, the seller pastes an editable link. Both sides can disappear halfway through, and nobody can prove what was delivered. KanvasHub is that transaction with a ledger, a payment gateway and a licence behind it.",
     facts: [
       { label: "Backend", value: "22 tables, 76 indexes, 167 functions" },
       { label: "Code", value: "7,800 lines of Convex" },
@@ -107,6 +109,7 @@ export const caseStudies: CaseStudy[] = [
     status: "Live at ngopikos.my.id",
     live: "https://ngopikos.my.id",
     stack: ["Next.js", "Convex", "Clerk", "Midtrans", "Leaflet", "TypeScript"],
+    cover: "/screenshots/ngopikos.webp",
     lede: "Looking for a boarding house in Malang runs on WhatsApp groups and recycled photos. Middlemen take a cut of the rent for handing over a phone number, and a student has no way to tell a live listing from one that was rented out two months ago. NgopiKos charges the tenant a small amount to unlock the owner's contact directly, and charges the owner only when a lease is actually signed.",
     facts: [
       { label: "Backend", value: "14 tables, 31 indexes, 67 functions" },
