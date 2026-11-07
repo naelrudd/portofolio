@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b0f19;
-  --bg-deep: #070a12;
-  --bg-card: #111827;
-  --bg-card-hover: #1f2937;
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --moss: #22d3ee;
-  --rosy: #fb7185;
-  --border: #1f2937;
-  --border-hover: #334155;
-  --deep-green: #0ea5e9;
-  --dark-green: #0b1221;
-  --beige: #f8fafc;
+  /* Paper and ink from the brand. Light, not a dark dashboard theme. */
+  --bg: #f7f4d5;
+  --bg-deep: #efebc8;
+  --bg-card: #fcfadf;
+  --bg-card-hover: #fffdf2;
+  --text: #0a3323;
+  --text-muted: #5c6b57;
+  --moss: #105666;
+  --rosy: #8c4a42;
+  --border: #dbd6b0;
+  --border-hover: #b9b491;
+  --border-strong: #8a8560;
+  --deep-green: #839958;
+  --dark-green: #0a3323;
+  --beige: #0a3323;
 }
 
 @theme inline {
@@ -27,6 +29,7 @@
   --color-rosy: var(--rosy);
   --color-border: var(--border);
   --color-border-hover: var(--border-hover);
+  --color-border-strong: var(--border-strong);
   --color-deep-green: var(--deep-green);
   --color-dark-green: var(--dark-green);
   --color-beige: var(--beige);
@@ -37,15 +40,42 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Pressed and disabled states for every control, so the button style has all
+   eight states rather than hover and focus only. */
+button:active,
+a:active {
+  transform: translateY(1px);
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 ::selection {

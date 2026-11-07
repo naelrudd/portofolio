@@ -40,7 +40,7 @@ function MarkdownTool() {
       .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mt-6 mb-3 text-[var(--beige)]">$1</h1>')
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[var(--beige)]">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-      .replace(/`(.*?)`/g, '<code class="bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--moss)] font-[family-name:var(--font-mono)] text-sm">$1</code>')
+      .replace(/`(.*?)`/g, '<code class="bg-[var(--bg)] px-1.5 py-0.5 rounded text-[var(--moss)] text-sm">$1</code>')
       .replace(/^- (.*$)/gm, '<li class="ml-4 text-[var(--text-muted)]">\u2022 $1</li>')
       .replace(/^> (.*$)/gm, '<blockquote class="border-l-2 border-[var(--moss)] pl-4 italic text-[var(--text-muted)]">$1</blockquote>')
       .replace(/\n\n/g, '<br/>');
@@ -54,7 +54,7 @@ function MarkdownTool() {
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="w-full h-64 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl p-4 font-[family-name:var(--font-mono)] text-sm text-[var(--beige)] resize-none focus:outline-none focus:border-[var(--moss)] transition-colors"
+          className="w-full h-64 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl p-4 text-sm text-[var(--beige)] resize-none focus:outline-none focus:border-[var(--moss)] transition-colors"
         />
       </div>
       <div>
@@ -143,7 +143,7 @@ function CalculatorTool() {
     <div className="grid md:grid-cols-2 gap-6">
       <div className="max-w-xs">
         <div className="bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl p-4 mb-3">
-          <div className="text-right font-[family-name:var(--font-mono)] text-3xl text-[var(--beige)] truncate min-h-[40px]">
+          <div className="text-right text-3xl text-[var(--beige)] truncate min-h-[40px]">
             {display}
           </div>
         </div>
@@ -170,7 +170,7 @@ function CalculatorTool() {
         ) : (
           <div className="space-y-2">
             {history.map((h, i) => (
-              <div key={i} className="text-sm font-[family-name:var(--font-mono)] text-[var(--text-muted)] bg-[var(--bg-deep)] border border-[var(--border)] rounded-lg px-4 py-2.5">
+              <div key={i} className="text-sm text-[var(--text-muted)] bg-[var(--bg-deep)] border border-[var(--border)] rounded-lg px-4 py-2.5">
                 {h}
               </div>
             ))}
@@ -237,7 +237,7 @@ function ColorTool() {
             className="w-full flex items-center gap-3 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl px-5 py-3.5 hover:border-[var(--moss)] transition-colors text-left group"
           >
             <span className="text-xs text-[var(--moss)] font-medium w-8">{item.label}</span>
-            <span className="font-[family-name:var(--font-mono)] text-sm text-[var(--beige)] flex-1">{item.value}</span>
+            <span className="text-sm text-[var(--beige)] flex-1">{item.value}</span>
             <span className="text-xs text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity">click to copy</span>
           </button>
         ))}
@@ -344,7 +344,7 @@ function PasswordGeneratorTool() {
   return (
     <div className="space-y-6">
       <div className="flex gap-3">
-        <div className="flex-1 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl px-5 py-4 font-[family-name:var(--font-mono)] text-lg text-[var(--beige)] truncate">
+        <div className="flex-1 bg-[var(--bg-deep)] border border-[var(--border)] rounded-xl px-5 py-4 text-lg text-[var(--beige)] truncate">
           {password}
         </div>
         <button

@@ -1,16 +1,16 @@
 export function Footer() {
   return (
-    <footer className="py-8 border-t border-[var(--border)] bg-[var(--bg-deep)]">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="border-t border-[var(--border)] py-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-8 lg:px-16">
         <p className="text-xs text-[var(--text-muted)]">
-          {new Date().getFullYear()} Natanael Rudy. Built with Next.js + Tailwind CSS.
+          {new Date().getFullYear()} Natanael Rudy. Next.js and Convex.
         </p>
         <div className="flex items-center gap-6">
           <a
             href="https://github.com/naelrudd"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors"
+            className="text-xs text-[var(--text-muted)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
           >
             GitHub
           </a>
@@ -18,13 +18,13 @@ export function Footer() {
             href="https://linkedin.com/in/natanaelrudy/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors"
+            className="text-xs text-[var(--text-muted)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
           >
             LinkedIn
           </a>
           <a
             href="mailto:natanaelrudyhadinata@gmail.com"
-            className="text-xs text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors"
+            className="text-xs text-[var(--text-muted)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
           >
             Email
           </a>

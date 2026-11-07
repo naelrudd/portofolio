@@ -49,3 +49,6 @@ next-env.d.ts
 # static export
 dist/
 
+
+# hallmark lint artefacts
+.hallmark/

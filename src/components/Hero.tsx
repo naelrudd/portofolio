@@ -5,10 +5,16 @@ import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Stack", href: "#stack" },
   { label: "CV", href: "#cv" },
   { label: "Contact", href: "#contact" },
+];
+
+const facts = [
+  { label: "Now", value: "Thesis on LLM-driven NPCs in a Unity RPG" },
+  { label: "Stack", value: "Convex, Next.js, Clerk, Midtrans" },
+  { label: "Open to", value: "Full-time and contract roles, flexible on hours" },
 ];
 
 export function Hero() {
@@ -16,7 +22,7 @@ export function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -29,62 +35,52 @@ export function Hero() {
   }, [menuOpen]);
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 80% 20%, rgba(34,211,238,0.15), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(251,113,133,0.06), transparent 50%)",
-        }}
-      />
-
+    <section className="flex flex-col">
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 motion-reduce:transition-none ${
           scrolled
-            ? "bg-[var(--bg-deep)]/90 backdrop-blur-xl border-b border-[var(--border)]"
+            ? "bg-[var(--bg)]/95 border-b border-[var(--border)]"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 h-16 flex items-center justify-between">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-8 lg:px-16">
           <a
             href="#"
-            className="font-[family-name:var(--font-heading)] text-xl font-bold text-[var(--moss)]"
+            className="font-[family-name:var(--font-heading)] text-lg font-medium text-[var(--text)]"
           >
-            N<span className="text-[var(--rosy)]">.</span>R
+            Natanael Rudy
           </a>
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[var(--text-muted)] hover:text-[var(--beige)] transition-colors duration-300 relative group"
+                className="text-sm text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--text)] motion-reduce:transition-none"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--moss)] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </div>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            className="relative flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
             <span
-              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
-                menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+              className={`block h-[2px] w-5 bg-[var(--text)] transition-transform duration-200 motion-reduce:transition-none ${
+                menuOpen ? "translate-y-[7px] rotate-45" : ""
               }`}
             />
             <span
-              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
+              className={`block h-[2px] w-5 bg-[var(--text)] transition-opacity duration-200 motion-reduce:transition-none ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-5 h-[2px] bg-[var(--beige)] transition-all duration-300 ${
-                menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+              className={`block h-[2px] w-5 bg-[var(--text)] transition-transform duration-200 motion-reduce:transition-none ${
+                menuOpen ? "-translate-y-[7px] -rotate-45" : ""
               }`}
             />
           </button>
@@ -92,13 +88,13 @@ export function Hero() {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[var(--bg-deep)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden">
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[var(--bg)] md:hidden">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-[family-name:var(--font-heading)] text-[var(--beige)] hover:text-[var(--moss)] transition-colors duration-300"
+              className="font-[family-name:var(--font-heading)] text-2xl text-[var(--text)]"
             >
               {link.label}
             </a>
@@ -106,87 +102,65 @@ export function Hero() {
         </div>
       )}
 
-      <div className="relative flex-1 flex items-center pt-16">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 w-full py-12 md:py-0">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="space-y-8 text-center lg:text-left flex flex-col justify-center items-center lg:items-start order-2 lg:order-1">
-              <div>
-                <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] tracking-[0.25em] uppercase mb-5">
-                  Hello, I&apos;m
-                </p>
-                <h1 className="font-[family-name:var(--font-heading)] text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
-                  Natanael
-                  <br />
-                  <span className="text-[var(--rosy)]">Rudy</span>
-                </h1>
-              </div>
-              <p className="text-base md:text-lg text-[var(--text-muted)] font-light max-w-md leading-relaxed">
-                AI & Fullstack Engineer — shipping reliable systems with Convex,
-                Next.js, and production AI.
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                <a
-                  href="#projects"
-                  className="px-7 py-3.5 bg-[var(--moss)] text-[var(--bg)] font-semibold rounded-xl hover:brightness-110 hover:shadow-lg hover:shadow-[var(--moss)]/25 transition-all duration-300"
-                >
-                  View Work
-                </a>
-                <a
-                  href="#contact"
-                  className="px-7 py-3.5 border border-[var(--rosy)]/70 text-[var(--rosy)] font-semibold rounded-xl hover:bg-[var(--rosy)]/10 hover:border-[var(--rosy)] transition-all duration-300"
-                >
-                  Get in Touch
-                </a>
-              </div>
+      <div className="mx-auto flex w-full max-w-7xl flex-col px-6 pt-28 pb-14 md:px-8 lg:min-h-[100svh] lg:justify-between lg:px-16 lg:pt-28">
+        <div className="mt-8 grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <h1 className="font-[family-name:var(--font-heading)] text-5xl leading-[0.98] font-medium text-[var(--text)] sm:text-6xl lg:text-[5.5rem]">
+              Natanael Rudy
+            </h1>
+            <p className="mt-6 max-w-md text-[17px] leading-relaxed text-[var(--text-muted)]">
+              Fullstack engineer building marketplaces and AI features that run in
+              production.
+            </p>
 
-              <div className="flex gap-8 sm:gap-10 pt-2 justify-center lg:justify-start">
-                {[
-                  { num: "4+", label: "Shipped apps" },
-                  { num: "3+", label: "Years coding" },
-                  { num: "E2E", label: "Ownership" },
-                ].map((stat) => (
-                  <div key={stat.label} className="text-left">
-                    <div className="text-2xl font-bold text-[var(--beige)] font-[family-name:var(--font-mono)]">
-                      {stat.num}
-                    </div>
-                    <div className="text-[11px] text-[var(--text-muted)] tracking-widest mt-1">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative">
-                <div className="absolute -inset-10 bg-[var(--moss)] rounded-full blur-[90px] opacity-[0.12]" />
-                <div className="absolute -inset-4 bg-[var(--deep-green)] rounded-full blur-[50px] opacity-20" />
-                <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full overflow-hidden border border-[var(--border)] shadow-2xl ring-1 ring-[var(--moss)]/20">
-                  <Image
-                    src="/images/profile.webp"
-                    alt="Natanael Rudy"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 288px, 352px"
-                    className="object-cover object-[center_18%]"
-                  />
-                </div>
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl px-4 py-2.5 shadow-xl backdrop-blur">
-                  <p className="font-[family-name:var(--font-mono)] text-xs text-[var(--moss)] whitespace-nowrap">
-                    ▸ AI + Fullstack
-                  </p>
-                </div>
-              </div>
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <a
+                href="#projects"
+                className="rounded-lg bg-[var(--text)] px-6 py-3 text-sm font-medium text-[var(--bg)] transition-colors duration-200 hover:bg-[var(--moss)] motion-reduce:transition-none"
+              >
+                View work
+              </a>
+              <a
+                href="#contact"
+                className="text-sm font-medium text-[var(--moss)] transition-colors duration-200 hover:text-[var(--rosy)] motion-reduce:transition-none"
+              >
+                Get in touch
+              </a>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-        <span className="text-[10px] text-[var(--text-muted)] font-[family-name:var(--font-mono)] tracking-widest uppercase">
-          scroll
-        </span>
-        <div className="w-px h-10 bg-gradient-to-b from-[var(--moss)] to-transparent" />
+          <div className="lg:col-span-5">
+            <figure className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-card)]">
+              <div className="relative aspect-[16/10] w-full border-b border-[var(--border)]">
+                <Image
+                  src="/screenshots/kanvashub.webp"
+                  alt="KanvaHub marketplace, a live product built with Convex and Midtrans"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 38vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <figcaption className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 text-xs">
+                <span className="text-[var(--text)]">KanvaHub</span>
+                <span className="text-[var(--text-muted)]">
+                  Live, on Convex and Midtrans
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <dl className="mt-12 grid grid-cols-1 gap-6 lg:mt-0 border-t border-[var(--border)] pt-6 sm:grid-cols-3">
+          {facts.map((fact) => (
+            <div key={fact.label}>
+              <dt className="text-xs text-[var(--text-muted)]">
+                {fact.label}
+              </dt>
+              <dd className="mt-2 text-sm text-[var(--text)]">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
