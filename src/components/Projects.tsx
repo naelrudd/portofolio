@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
@@ -11,6 +12,7 @@ const projects = [
     screenshot: "/screenshots/kanvashub.webp",
     href: null,
     live: "https://kanvashub.id",
+    caseStudy: "/work/kanvashub",
   },
   {
     name: "NgopiKos",
@@ -22,6 +24,7 @@ const projects = [
     screenshot: "/screenshots/ngopikos.webp",
     href: null,
     live: "https://ngopikos.my.id",
+    caseStudy: "/work/ngopikos",
   },
   {
     name: "MoveVerse",
@@ -33,6 +36,7 @@ const projects = [
     screenshot: "/screenshots/moveverse.webp",
     href: "https://github.com/naelrudd/moveverse",
     live: null,
+    caseStudy: null,
   },
   {
     name: "llm-docs-mirrors",
@@ -44,6 +48,7 @@ const projects = [
     screenshot: "/screenshots/llm-docs-mirrors.webp",
     href: "https://github.com/naelrudd/llm-docs-mirrors",
     live: null,
+    caseStudy: null,
   },
 ];
 
@@ -110,6 +115,14 @@ export function Projects() {
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-6">
+                  {project.caseStudy && (
+                    <Link
+                      href={project.caseStudy}
+                      className="text-sm font-medium text-[var(--moss)] transition-colors duration-200 motion-reduce:transition-none hover:text-[var(--text)]"
+                    >
+                      Read the case study
+                    </Link>
+                  )}
                   {project.live && (
                     <a
                       href={project.live}

@@ -21,12 +21,22 @@ const types = {
   ".woff2": "font/woff2",
 };
 
+// Static export writes /work/foo.html, so try the clean URL a host would serve:
+// the path itself, then path.html, then path/index.html.
+async function resolve(base) {
+  for (const candidate of [base, `${base}.html`, join(base, "index.html")]) {
+    const info = await stat(candidate).catch(() => null);
+    if (info?.isFile()) return candidate;
+  }
+  return null;
+}
+
 createServer(async (req, res) => {
   try {
     const url = decodeURIComponent((req.url || "/").split("?")[0]);
-    let file = join(root, normalize(url).replace(/^(\.\.[/\\])+/, ""));
-    const info = await stat(file).catch(() => null);
-    if (!info || info.isDirectory()) file = join(file, "index.html");
+    const base = join(root, normalize(url).replace(/^(\.\.[/\\])+/, ""));
+    const file = await resolve(base);
+    if (!file) throw new Error("not found");
     const body = await readFile(file);
     res.writeHead(200, { "Content-Type": types[extname(file)] || "application/octet-stream" });
     res.end(body);
