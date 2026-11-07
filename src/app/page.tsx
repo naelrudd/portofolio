@@ -11,6 +11,14 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Only the home page shows the hero screenshot, so only it preloads. */}
+      <link
+        rel="preload"
+        href="/screenshots/kanvashub.webp"
+        as="image"
+        type="image/webp"
+        fetchPriority="high"
+      />
       <Hero />
       <Ticker />
       <About />
